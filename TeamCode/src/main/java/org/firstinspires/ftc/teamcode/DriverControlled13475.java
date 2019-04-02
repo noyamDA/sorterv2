@@ -135,15 +135,19 @@ public class DriverControlled13475 extends LinearOpMode {
                     pusher2.setPosition(0);
                     pusher1.setPosition(0);
             }
-            while(gamepad2.dpad_up){
+            if(gamepad2.dpad_up){
+                    runtime.reset();
+                    while (true){
+
                     runtime.startTime();
                 pusher2.setPosition(servoPower);
                 pusher1.setPosition(servoPower);
-                servoPower = runtime.milliseconds()*runtime.milliseconds()*100;
-                if(servoPower >= 1){
+                servoPower = (runtime.milliseconds()*runtime.milliseconds())/1000;
+                if((servoPower >= 1)||!gamepad2.dpad_up){
                     servoPower=0;
                     break;
                 }
+                    }
 
             }
             //feedback();
