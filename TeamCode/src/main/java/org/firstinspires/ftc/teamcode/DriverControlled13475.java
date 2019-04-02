@@ -3,7 +3,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -21,7 +20,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="DriverControlled13475", group="LinearOpMode")
+@TeleOp(name="Hardware may touch this one", group="LinearOpMode")
 //@Disabled
 public class DriverControlled13475 extends LinearOpMode {
 
@@ -41,6 +40,10 @@ public class DriverControlled13475 extends LinearOpMode {
     private Servo dumper1 = null;
     private Servo dumper2 = null;
     private Servo flippy = null;
+    private Servo pusher1 = null;
+    private Servo pusher2 = null;
+
+    private ElapsedTime runtime = new ElapsedTime();
 
 
     @Override
@@ -48,6 +51,7 @@ public class DriverControlled13475 extends LinearOpMode {
         setUp();
         boolean flipperCount = false;
         int spinnerCount = 0;
+        double servoPower=0;
 
 
         // run until the end of the match (driver presses STOP)
@@ -58,8 +62,9 @@ public class DriverControlled13475 extends LinearOpMode {
             float driveLeft = gamepad1.left_stick_y;
             float driveRight = gamepad1.right_stick_y;
             float landerRiserpwr = gamepad1.left_trigger - gamepad1.right_trigger;
-            float spinnyArmExtpwr = gamepad2.right_trigger - gamepad2.left_trigger;
 
+            //float spinnyArmExtpwr = gamepad2.right_trigger - gamepad2.left_trigger;
+/*
             while (gamepad2.dpad_down) {//in
                 spinnyArmTilt1.setPower(-.5);
                 spinnyArmTilt2.setPower(-.5);
@@ -77,36 +82,17 @@ public class DriverControlled13475 extends LinearOpMode {
                 spinnyArmExt.setPower(0);
 
             }
-
+*/
 
             leftDrive.setPower(driveLeft);
             rightDrive.setPower(driveRight);
             landerRiser1.setPower(landerRiserpwr);
             landerRiser2.setPower(landerRiserpwr);
-            spinnyArmExt.setPower(spinnyArmExtpwr);
+            //spinnyArmExt.setPower(spinnyArmExtpwr);
 
             //servos code
-/*
-            if (gamepad2.x) {// This setup assumes setting power keeps power set
-                while (gamepad2.x) {
-                    //this keeps number from increasing more than one
-                }
-                //spinnerCount=spinnerCount+1;
-                if (spinnerCount == 0) {//spin in
-                    spinner2.setPower(-1);
-                    spinner1.setPower(1);
-                    spinnerCount = 1;
-                } else if (spinnerCount == 1) {//spin stop
-                    spinner2.setPower(0);
-                    spinner1.setPower(0);
-                    spinnerCount = 2;
-                } else if (spinnerCount == 2) {//spin out
-                    spinner2.setPower(1);
-                    spinner1.setPower(-1);
-                    spinnerCount = 0;
-                }
-                }
-*/
+
+//Spinners
                 if (gamepad2.x) {//spin in
                     spinner2.setPower(-1);
                     spinner1.setPower(1);
@@ -144,6 +130,22 @@ public class DriverControlled13475 extends LinearOpMode {
                     flipperCount = false;
                 }
             }
+
+            if(gamepad2.dpad_down){
+                    pusher2.setPosition(0);
+                    pusher1.setPosition(0);
+            }
+            while(gamepad2.dpad_up){
+                    runtime.startTime();
+                pusher2.setPosition(servoPower);
+                pusher1.setPosition(servoPower);
+                servoPower = runtime.milliseconds()*runtime.milliseconds()*100;
+                if(servoPower >= 1){
+                    servoPower=0;
+                    break;
+                }
+
+            }
             //feedback();
         }
     }
@@ -166,6 +168,9 @@ public class DriverControlled13475 extends LinearOpMode {
         dumper1= hardwareMap.servo.get("dumper1");
         dumper2= hardwareMap.servo.get("dumper2");
         flippy= hardwareMap.servo.get("flippy_flipper");
+        pusher1= hardwareMap.servo.get("pusher1");
+        pusher2= hardwareMap.servo.get("pusher2");
+
 
 
         spinnyArmExt.setDirection(DcMotor.Direction.REVERSE);
@@ -173,6 +178,7 @@ public class DriverControlled13475 extends LinearOpMode {
         spinnyArmTilt2.setDirection(DcMotor.Direction.REVERSE);
         leftDrive.setDirection(DcMotor.Direction.FORWARD);
         rightDrive.setDirection(DcMotor.Direction.REVERSE);
+        pusher2.setDirection(Servo.Direction.REVERSE);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();

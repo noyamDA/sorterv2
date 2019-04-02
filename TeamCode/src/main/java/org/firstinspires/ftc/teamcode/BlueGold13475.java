@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 //this is a test for github - please ignore
 
-    @Autonomous(name = "BlueGold13475", group = "Autonomous")
+    @Autonomous(name = "NO TOUCHY!BG", group = "Autonomous")
 //@Disabled
     public class BlueGold13475 extends LinearOpMode {
         private GoldAlignDetector detector;
@@ -41,11 +41,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
             setUp();
             waitForStart();
-
-
-                    //the following code isn't ready for qualifiers :(
-                     //instead, we will drive to crater, drop derky derk, and run for sweet life
-
 
             if(detector.getXPosition()>=0 && (detector.getXPosition()<229)){
                 //left
@@ -135,74 +130,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 
             }
-/*
 
-            encoderDrive(DRIVE_SPEED, 4.5, -0, 0, 70);//turn 60
-            if(detector.getXPosition()>=0 && (detector.getXPosition()<229)){
-                //left
-                encoderDrive(DRIVE_SPEED, 4.5, -4.5, 0, .7);//turn 60
-                encoderDrive(DRIVE_SPEED, 17, 17, 0, 3); //move to ball 1
-                encoderDrive(DRIVE_SPEED, 6.5, -6.5, 0, .7);//turn 60
-                encoderDrive(DRIVE_SPEED, 10, 10, 0, 2);//backup
-                encoderDrive(DRIVE_SPEED, -58, -58, 0, 3.5);//backup
-            }
-            else if((detector.getXPosition()>=230) && (detector.getXPosition()<449)){
-                //middle
-                encoderDrive(DRIVE_SPEED, 17, 0, 0, 2); //move to ball 2
-                encoderDrive(DRIVE_SPEED, 12, -12, 0, 1.5);//turn 90
-                encoderDrive(DRIVE_SPEED, -48, -48, 0, 3);//backup
-            }
-            else if(detector.getXPosition()>=450){
-                //right
-                encoderDrive(DRIVE_SPEED, -4.5, 0, 0, 1);//turn -60
-                encoderDrive(DRIVE_SPEED, 17, 17, 0, 3); //move to ball 3
-                encoderDrive(DRIVE_SPEED, -6.5, 6.5, 0, .7);//turn 60
-                encoderDrive(DRIVE_SPEED, -28, -28, 0, 2);//backup to square
-            }
-
-*/
-
-            // Step through each leg of the path,
-            // Note: Reverse movement is obtained by setting a negative distance (not speed).
-            //Timeout is how much time is allotted for the motor to get to a desired position
-            //i am assuming 90 turn is 12'
-
-
-//code landing
-//THE TIMES ARE WRONG AND HAVE NOT BEEN TESTED!!!!!!!!!!!!!
-            /*
-            encoderDrive(1,0,0,4000,23);
-            sleep(500);//stop a bissel
-            encoderDrive(1,2,2,0,0.7);
-            //encoderDrive(1,2,-2,0,2);
-
-            encoderDrive(DRIVE_SPEED, -4.5, 4.5, 0, 1);//turn -60
-            encoderDrive(DRIVE_SPEED, 17, 17, 0, 3); //move to ball 3
-            encoderDrive(DRIVE_SPEED, -6.5, 6.5, 0, .7);//turn 60
-            encoderDrive(DRIVE_SPEED, -28, -28, 0, 2);//backup to square
-
-            //code to sqver
-            //encoderDrive(DRIVE_SPEED, -28, -28, 0, 5.0);//move to turn position
-            encoderDrive(DRIVE_SPEED, -4.2, 4.2, 0, 5.0);
-            encoderDrive(DRIVE_SPEED, 57, 57, 0, 3.5);//move to square
-
-            flippy.setPosition(0);
-            sleep(500);
-            flippy.setPosition(1);
-
-            //to crater
-            encoderDrive(DRIVE_SPEED, 12.25, -12.25, 0, 2.4);//180 turn
-            encoderDrive(DRIVE_SPEED, 50, 50, 0, 3.1);
-
-
-            telemetry.addData("Path", "Complete");
-            telemetry.update();
-   */
         }
 
         /*
-         *  Method to perfmorm a relative move, based on encoder counts.
-         *  Encoders are not reset as the move is based on the current position.
          *  Move will stop if any of three conditions occur:
          *  1) Move gets to the desired position
          *  2) Move runs out of time

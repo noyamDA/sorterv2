@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 //this is a test for github - please ignore
 
-@Autonomous(name = "BlueSilver13475", group = "Autonomous")
+@Autonomous(name = "NO TOUCHY! BS", group = "Autonomous")
 //@Disabled
 public class BlueSilver13475 extends LinearOpMode {
     private GoldAlignDetector detector;
