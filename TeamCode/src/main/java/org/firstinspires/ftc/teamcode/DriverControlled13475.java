@@ -31,9 +31,9 @@ public class DriverControlled13475 extends LinearOpMode {
     private DcMotor landerRiser1 = null;
     private DcMotor landerRiser2 = null;
 
-    private DcMotor spinnyArmExt = null;
-    private DcMotor spinnyArmTilt1 = null;
-    private DcMotor spinnyArmTilt2 = null;
+    //private DcMotor spinnyArmExt = null;
+    //private DcMotor spinnyArmTilt1 = null;
+    //private DcMotor spinnyArmTilt2 = null;
 
     private CRServo spinner1 = null;
     private CRServo spinner2 = null;
