@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.ElapsedTime;
+//import com.qualcomm.robotcore.util.ElapsedTime;
 
 //hello, i am test. dont remove me pls - ok, now u can
 /**
@@ -43,7 +43,7 @@ public class DriverControlled13475 extends LinearOpMode {
     private Servo pusher1 = null;
     private Servo pusher2 = null;
 
-    private ElapsedTime runtime = new ElapsedTime();
+    //private ElapsedTime runtime = new ElapsedTime();
 
 
     @Override
@@ -133,12 +133,13 @@ public class DriverControlled13475 extends LinearOpMode {
             }
 
             if(gamepad2.dpad_down){
-                    pusher2.setPosition(.5);
-                    pusher1.setPosition(.5);
+                    pusher2.setPosition(0);
+                    pusher1.setPosition(0);
             }
             if(gamepad2.dpad_up){
-                //pusher2.setPosition(.5);
-                //pusher1.setPosition(.5);
+                pusher2.setPosition(1);
+                pusher1.setPosition(1);
+                /*
                     runtime.reset();
                     while (true) {
 
@@ -148,9 +149,11 @@ public class DriverControlled13475 extends LinearOpMode {
                         servoPower = (runtime.milliseconds() * runtime.milliseconds()) / 10000000;
                         if ((servoPower >= 1) || !gamepad2.dpad_up) {
                             servoPower = 0;
-                            break;
-                        }//make a cool down code
-                    }
+                            break;*/
+
+                //make a cool down code
+
+
 
 
             }

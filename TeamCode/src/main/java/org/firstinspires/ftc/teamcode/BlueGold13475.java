@@ -45,10 +45,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
             if(detector.getXPosition()>=0 && (detector.getXPosition()<229)){
                 //left
                 detector.disable();
-                encoderDrive(1,0,0,3,5);
-                encoderDrive(.3, 2.5, 2.5, 0, 5.0);
+                encoderDrive(1,0,0,4.5,5.5);
+                encoderDrive(.3, -2.5, -2.5, 0, 5.0);
                 encoderDrive(.3, 3, -3, 0, 5.0);
-                encoderDrive(.3, -3.5, -3.5, 0, 5.0);
+                encoderDrive(.3, 3.5, 3.5, 0, 5.0);
                 encoderDrive(.3, -3, 3, 0, 5.0);
 
                 encoderDrive(DRIVE_SPEED, -13.5, 13.5, 0, 5.0);//turn to face balls
@@ -80,10 +80,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
             else if((detector.getXPosition()>=230) && (detector.getXPosition()<449)){
                 //middle
                 detector.disable();
-                encoderDrive(.3, 2.5, 2.5, 0, 5.0);
-                encoderDrive(.3, 3, -3, 0, 5.0);
-                encoderDrive(.3, -3.5, -3.5, 0, 5.0);
+                encoderDrive(1,0,0,3,5.5);
+                encoderDrive(.3, -2.5, -2.5, 0, 5.0);
+                encoderDrive(.3, 3, -3, -30, 5.0);
+                encoderDrive(.3, 3.5, 3.5, 0, 5.0);
                 encoderDrive(.3, -3, 3, 0, 5.0);
+
                 encoderDrive(DRIVE_SPEED, 11, -11, 0, 5.0);//turn to face balls
                 encoderDrive(.3, -16, -16, 0, 5.0);//hit mid ball
                 encoderDrive(DRIVE_SPEED, 4, 4, 0, 5.0);//return
@@ -104,10 +106,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
             else if(detector.getXPosition()>=450){
                 //right
                 detector.disable();
-                encoderDrive(.3, 2.5, 2.5, 0, 5.0);
+                encoderDrive(1,0,0,3,5.5);
+                encoderDrive(.3, -2.5, -2.5, -3, 5.0);
                 encoderDrive(.3, 3, -3, 0, 5.0);
-                encoderDrive(.3, -3.5, -3.5, 0, 5.0);
+                encoderDrive(.3, 3.5, 3.5, 0, 5.0);
                 encoderDrive(.3, -3, 3, 0, 5.0);
+
                 encoderDrive(DRIVE_SPEED, 11, -11, 0, 5.0);//turn to face balls
                 encoderDrive(.3, -9, -9, 0, 5.0);//move into intersection
                 encoderDrive(DRIVE_SPEED, -11.5, 11.5, 0, 5.0);//turn

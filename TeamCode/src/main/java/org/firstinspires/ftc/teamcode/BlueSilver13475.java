@@ -48,42 +48,65 @@ public class BlueSilver13475 extends LinearOpMode {
         if(detector.getXPosition()>=0 && (detector.getXPosition()<229)){
             //left
             detector.disable();
-            encoderDrive(1,0,0,3,5);
-            encoderDrive(.3, 2.5, 2.5, 0, 5.0);
+            encoderDrive(1,0,0,3,5.5);
+            encoderDrive(.3, -2.5, -2.5, -30, 5.0);
             encoderDrive(.3, 3, -3, 0, 5.0);
-            encoderDrive(.3, -3.5, -3.5, 0, 5.0);
+            encoderDrive(.3, 3.5, 3.5, 0, 5.0);
             encoderDrive(.3, -3, 3, 0, 5.0);
-
+/*
             encoderDrive(DRIVE_SPEED, -13.5, 13.5, 0, 5.0);//turn to face balls
             encoderDrive(DRIVE_SPEED, 3, 3, 0, 5.0);//not totlly sure why this is here tbh
             encoderDrive(DRIVE_SPEED, 7.5, -7.5, 0, 5.0);//turn 60
             encoderDrive(DRIVE_SPEED, 18, 18, 0, 5.0); //move to ball 1
             encoderDrive(DRIVE_SPEED, 10, -10, 0, 5.0);//turn 60 (was 7.5)
             //encoderDrive(DRIVE_SPEED, 15, 15, 0, 5.0);//onward
+*/
 
+
+
+
+            //code that should work faster and more effective maybe
+
+            encoderDrive(DRIVE_SPEED, 11, -11, 0, 5.0);//turn to face balls
+            encoderDrive(.3, -9, -9, 0, 5.0);//move into intersection
+            encoderDrive(DRIVE_SPEED, -11.5, 11.5, 0, 5.0);//turn
+            encoderDrive(DRIVE_SPEED, 11, 11, 0, 5.0);//move to ball
+            encoderDrive(DRIVE_SPEED, 11.5, -11.5, 0, 5.0);//turn to face ball
+            encoderDrive(.3, -7, -7, 0, 5.0);//hit ball
+            encoderDrive(DRIVE_SPEED, 4, 4, 0, 5.0);//return
+            encoderDrive(DRIVE_SPEED, -11.5, 11.5, 0, 5.0);//turn to backup
+            encoderDrive(DRIVE_SPEED, -60, -60, 0, 5.0);//backup
+            encoderDrive(DRIVE_SPEED, -6, 6, 0, 5.0);//turn 60
+            encoderDrive(DRIVE_SPEED, -30, -30, 0, 5.0);//backup
+
+
+
+            /*
             //encoderDrive(DRIVE_SPEED, 5, -5, 0, 5.0);//turn to hit ball
             encoderDrive(.2, -5.25, -5.25, 0, 5.0);//hit ball
             encoderDrive(DRIVE_SPEED, 6, 6, 0, 5.0);//reverse
             encoderDrive(DRIVE_SPEED, -6, 6, 0, 5.0);//turn (was 6)
-
             encoderDrive(DRIVE_SPEED, -60, -60, 0, 5.0);//backup
             encoderDrive(DRIVE_SPEED, -6, 6, 0, 5.0);//turn 60
             encoderDrive(DRIVE_SPEED, -30, -30, 0, 5.0);//backup
-            //encoderDrive(DRIVE_SPEED, -24, 24, 0, 5.0);
+            encoderDrive(DRIVE_SPEED, -24, 24, 0, 5.0);
             flippy.setPosition(0);
             sleep(1000);
             flippy.setPosition(1);
             encoderDrive(DRIVE_SPEED, 44, 44, 0, 5.0);//backup
-
+*/
 
         }
         else if((detector.getXPosition()>=230) && (detector.getXPosition()<449)){
             //middle
             detector.disable();
-            encoderDrive(.3, 2.5, 2.5, 0, 5.0);
-            encoderDrive(.3, 3, -3, 0, 5.0);
-            encoderDrive(.3, -3.5, -3.5, 0, 5.0);
+            //code to disembark:
+            encoderDrive(1,0,0,3,5.5);
+            encoderDrive(.3, -2.5, -2.5, 0, 5.0);
+            encoderDrive(.3, 3, -3, -3, 5.0);
+            encoderDrive(.3, 3.5, 3.5, 0, 5.0);
             encoderDrive(.3, -3, 3, 0, 5.0);
+
             encoderDrive(DRIVE_SPEED, 11, -11, 0, 5.0);//turn to face balls
             encoderDrive(.3, -17, -17, 0, 5.0);//hit mid ball
             encoderDrive(DRIVE_SPEED, 5, 5, 0, 5.0);//return
@@ -103,10 +126,12 @@ public class BlueSilver13475 extends LinearOpMode {
         else if(detector.getXPosition()>=450){
             //right
             detector.disable();
-            encoderDrive(.3, 2.5, 2.5, 0, 5.0);
-            encoderDrive(.3, 3, -3, 0, 5.0);
-            encoderDrive(.3, -3.5, -3.5, 0, 5.0);
+            encoderDrive(1,0,0,3,5.5);
+            encoderDrive(.3, -2.5, -2.5, 0, 5.0);
+            encoderDrive(.3, 3, -3, -3, 5.0);
+            encoderDrive(.3, 3.5, 3.5, 0, 5.0);
             encoderDrive(.3, -3, 3, 0, 5.0);
+
             encoderDrive(DRIVE_SPEED, 11, -11, 0, 5.0);//turn to face balls
             encoderDrive(.3, -9, -9, 0, 5.0);//move into intersection
             encoderDrive(DRIVE_SPEED, -11.5, 11.5, 0, 5.0);//turn
