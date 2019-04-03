@@ -48,6 +48,7 @@ public class BlueSilver13475 extends LinearOpMode {
         if(detector.getXPosition()>=0 && (detector.getXPosition()<229)){
             //left
             detector.disable();
+            encoderDrive(1,0,0,3,5);
             encoderDrive(.3, 2.5, 2.5, 0, 5.0);
             encoderDrive(.3, 3, -3, 0, 5.0);
             encoderDrive(.3, -3.5, -3.5, 0, 5.0);
@@ -73,9 +74,6 @@ public class BlueSilver13475 extends LinearOpMode {
             sleep(1000);
             flippy.setPosition(1);
             encoderDrive(DRIVE_SPEED, 44, 44, 0, 5.0);//backup
-
-
-
 
 
         }
@@ -157,7 +155,7 @@ public class BlueSilver13475 extends LinearOpMode {
             newRightTarget = rightDrive.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
 
             newRiserTarget = landerRiser1.getCurrentPosition() + (int) (riser * COUNTS_PER_INCH);
-            newRiserTarget = landerRiser2.getCurrentPosition() + (int) (riser * COUNTS_PER_INCH);
+            //newRiserTarget = landerRiser2.getCurrentPosition() + (int) (riser * COUNTS_PER_INCH);
 
             leftDrive.setTargetPosition(newLeftTarget);
             rightDrive.setTargetPosition(newRightTarget);

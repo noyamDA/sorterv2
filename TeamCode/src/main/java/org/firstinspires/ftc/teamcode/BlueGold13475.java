@@ -45,6 +45,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
             if(detector.getXPosition()>=0 && (detector.getXPosition()<229)){
                 //left
                 detector.disable();
+                encoderDrive(1,0,0,3,5);
                 encoderDrive(.3, 2.5, 2.5, 0, 5.0);
                 encoderDrive(.3, 3, -3, 0, 5.0);
                 encoderDrive(.3, -3.5, -3.5, 0, 5.0);

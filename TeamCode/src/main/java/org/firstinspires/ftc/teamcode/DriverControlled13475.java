@@ -29,7 +29,7 @@ public class DriverControlled13475 extends LinearOpMode {
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
     private DcMotor landerRiser1 = null;
-    private DcMotor landerRiser2 = null;
+    //private DcMotor landerRiser2 = null;
 
     //private DcMotor spinnyArmExt = null;
     //private DcMotor spinnyArmTilt1 = null;
@@ -87,6 +87,7 @@ public class DriverControlled13475 extends LinearOpMode {
             leftDrive.setPower(driveLeft);
             rightDrive.setPower(driveRight);
             landerRiser1.setPower(landerRiserpwr);
+            /*
             landerRiser2.setPower(landerRiserpwr);
             //spinnyArmExt.setPower(spinnyArmExtpwr);
 
@@ -116,7 +117,7 @@ public class DriverControlled13475 extends LinearOpMode {
             if (gamepad2.left_bumper) {
                 dumper1.setPosition(.002);
                 dumper2.setPosition(.002);
-            }
+            }*/
 
 //flipper
 
@@ -132,22 +133,25 @@ public class DriverControlled13475 extends LinearOpMode {
             }
 
             if(gamepad2.dpad_down){
-                    pusher2.setPosition(0);
-                    pusher1.setPosition(0);
+                    pusher2.setPosition(.5);
+                    pusher1.setPosition(.5);
             }
             if(gamepad2.dpad_up){
+                //pusher2.setPosition(.5);
+                //pusher1.setPosition(.5);
                     runtime.reset();
-                    while (true){
+                    while (true) {
 
-                    runtime.startTime();
-                pusher2.setPosition(servoPower);
-                pusher1.setPosition(servoPower);
-                servoPower = (runtime.milliseconds()*runtime.milliseconds())/1000;
-                if((servoPower >= 1)||!gamepad2.dpad_up){
-                    servoPower=0;
-                    break;
-                }
+                        runtime.startTime();
+                        pusher2.setPosition(servoPower);
+                        pusher1.setPosition(servoPower);
+                        servoPower = (runtime.milliseconds() * runtime.milliseconds()) / 10000000;
+                        if ((servoPower >= 1) || !gamepad2.dpad_up) {
+                            servoPower = 0;
+                            break;
+                        }//make a cool down code
                     }
+
 
             }
             //feedback();
@@ -160,26 +164,26 @@ public class DriverControlled13475 extends LinearOpMode {
         leftDrive = hardwareMap.get(DcMotor.class, "left_drive");
         rightDrive = hardwareMap.get(DcMotor.class, "right_drive");
         landerRiser1 = hardwareMap.get(DcMotor.class, "lander_riser1");
-        landerRiser2 = hardwareMap.get(DcMotor.class, "lander_riser2");
+        //landerRiser2 = hardwareMap.get(DcMotor.class, "lander_riser2");
 
-        spinnyArmExt = hardwareMap.get(DcMotor.class, "spinny_arm_ext");
-        spinnyArmTilt1 = hardwareMap.get(DcMotor.class, "spinny_arm_tilt1");
-        spinnyArmTilt2 = hardwareMap.get(DcMotor.class, "spinny_arm_tilt2");
+        //spinnyArmExt = hardwareMap.get(DcMotor.class, "spinny_arm_ext");
+        //spinnyArmTilt1 = hardwareMap.get(DcMotor.class, "spinny_arm_tilt1");
+        //spinnyArmTilt2 = hardwareMap.get(DcMotor.class, "spinny_arm_tilt2");
 
 
-        spinner1 = hardwareMap.crservo.get("spinner1");
-        spinner2 = hardwareMap.crservo.get( "spinner2");
-        dumper1= hardwareMap.servo.get("dumper1");
-        dumper2= hardwareMap.servo.get("dumper2");
+        //spinner1 = hardwareMap.crservo.get("spinner1");
+        //spinner2 = hardwareMap.crservo.get( "spinner2");
+        //dumper1= hardwareMap.servo.get("dumper1");
+        //dumper2= hardwareMap.servo.get("dumper2");
         flippy= hardwareMap.servo.get("flippy_flipper");
         pusher1= hardwareMap.servo.get("pusher1");
         pusher2= hardwareMap.servo.get("pusher2");
 
 
 
-        spinnyArmExt.setDirection(DcMotor.Direction.REVERSE);
-        spinnyArmTilt1.setDirection(DcMotor.Direction.FORWARD);
-        spinnyArmTilt2.setDirection(DcMotor.Direction.REVERSE);
+        //spinnyArmExt.setDirection(DcMotor.Direction.REVERSE);
+        //spinnyArmTilt1.setDirection(DcMotor.Direction.FORWARD);
+        //spinnyArmTilt2.setDirection(DcMotor.Direction.REVERSE);
         leftDrive.setDirection(DcMotor.Direction.FORWARD);
         rightDrive.setDirection(DcMotor.Direction.REVERSE);
         pusher2.setDirection(Servo.Direction.REVERSE);
