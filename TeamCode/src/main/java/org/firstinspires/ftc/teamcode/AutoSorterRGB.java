@@ -38,8 +38,8 @@ public class AutoSorterRGB extends LinearOpMode {
         while (opModeIsActive()) {
             colorFeedback();
             conveyorBelt.setPower(1);
-
             while (!(jimmyTheSensor.red() >= 20) && !(jimmyTheSensor.green() >= 20) && !(jimmyTheSensor.blue() >= 20)) {//there is a block
+                conveyorBelt.setPower(0);
                 deposit();
                 telemetry.update();
 
