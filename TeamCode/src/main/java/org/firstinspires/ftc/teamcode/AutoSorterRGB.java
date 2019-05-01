@@ -29,7 +29,7 @@ public class AutoSorterRGB extends LinearOpMode {
 
     private static final double COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
     private static final double DRIVE_GEAR_REDUCTION    = 2.0 ;     // This is < 1.0 if geared UP
-    private static final double WHEEL_DIAMETER_INCHES   = 2 ;     // For figuring circumference
+    private static final double WHEEL_DIAMETER_INCHES   = 1.375 ;     // For figuring circumference
     static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
     private ColorSensor jimmyTheSensor;
