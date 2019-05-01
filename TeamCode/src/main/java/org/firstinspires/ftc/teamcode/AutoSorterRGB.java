@@ -14,9 +14,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous(name = "rgb", group = "Autonomous")
 public class AutoSorterRGB extends LinearOpMode {
 
-    static final int block1R = 1;
-    static final int block1G = 1;
-    static final int block1B = 1;
+    static final int block1R = 50;
+    static final int block1G = 50;
+    static final int block1B = 50;
 
     static final int block2R = 1;
     static final int block2G = 1;
@@ -51,7 +51,6 @@ public class AutoSorterRGB extends LinearOpMode {
                 conveyorBelt.setPower(0);
                 deposit();
                 telemetry.update();
-
             }
         }
     }
@@ -83,7 +82,8 @@ public class AutoSorterRGB extends LinearOpMode {
                         &&(jimmyTheSensor.blue() >= block1B +10)&&(jimmyTheSensor.blue() <= block1B-10))
             {
                 telemetry.addData("Block Chosen: ",1);
-                encoderDrive(1,1,1);
+                encoderDrive(1,18,5);
+                separator.setPosition(.33);
             }
 
         else if(/*color matches up with brick2*/
@@ -92,7 +92,8 @@ public class AutoSorterRGB extends LinearOpMode {
                         &&(jimmyTheSensor.blue() >= block2B +10)&&(jimmyTheSensor.blue() <= block2B-10))
             {
                 telemetry.addData("Block Chosen: ",2);
-                //pertz code sends to area 2
+                encoderDrive(1,18,5);
+                separator.setPosition(.5);
             }
 
         else if(/*color matches up with brick3*/
@@ -101,7 +102,8 @@ public class AutoSorterRGB extends LinearOpMode {
                         &&(jimmyTheSensor.blue() >= block3B +10)&&(jimmyTheSensor.blue() <= block3B-10))
             {
                 telemetry.addData("Block Chosen: ",3);
-                //pertz code sends to area 3
+                encoderDrive(1,18,5);
+                separator.setPosition(.7);
             }
 
         else{

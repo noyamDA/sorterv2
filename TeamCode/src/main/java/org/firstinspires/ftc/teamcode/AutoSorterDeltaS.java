@@ -69,9 +69,9 @@ public class AutoSorterDeltaS extends LinearOpMode {
         telemetry.update();
     }
 
-    protected void getLegnth(){ //this code continually runs when there is a block. distanceCount represents object distance in (mm). in theory,  at least
+    protected void getLegnth(){ //this code continually runs when there is a block. distanceCount represents object distance in in. in theory,  at least
 
-        //move conveyor a shtickle (~1mm)
+        encoderDrive(.5,.1,2);
         distanceCount++;
         telemetry.addData("Measuring Distance: ",distanceCount);
         telemetry.update();
