@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
  * Created by Zack on 4/29/19.
@@ -24,9 +25,17 @@ public class AutoSorterRGB extends LinearOpMode {
     static final int block3R = 1;
     static final int block3G = 1;
     static final int block3B = 1;
+
+
+    private static final double COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
+    private static final double DRIVE_GEAR_REDUCTION    = 2.0 ;     // This is < 1.0 if geared UP
+    private static final double WHEEL_DIAMETER_INCHES   = 2 ;     // For figuring circumference
+    static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
+            (WHEEL_DIAMETER_INCHES * 3.1415);
     private ColorSensor jimmyTheSensor;
     private DcMotor conveyorBelt;
     private Servo separator;
+    private ElapsedTime runtime = new ElapsedTime();
 
 
     @Override
@@ -74,7 +83,7 @@ public class AutoSorterRGB extends LinearOpMode {
                         &&(jimmyTheSensor.blue() >= block1B +10)&&(jimmyTheSensor.blue() <= block1B-10))
             {
                 telemetry.addData("Block Chosen: ",1);
-                //pertz code sends to area 1
+                encoderDrive(1,1,1);
             }
 
         else if(/*color matches up with brick2*/
@@ -100,5 +109,42 @@ public class AutoSorterRGB extends LinearOpMode {
             telemetry.addData("UNKNOWN OBJECT",0);
         }
 
+    }
+    public void encoderDrive(double speed,
+                             double leftInches,
+                             double timeoutS) {
+        int newLeftTarget;
+
+        // Ensure that the opmode is still active
+        if (opModeIsActive()) {
+
+            // Determine new target position, and pass to motor controller
+            newLeftTarget = conveyorBelt.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
+
+
+            conveyorBelt.setTargetPosition(newLeftTarget);
+
+            // Turn On RUN_TO_POSITION
+            conveyorBelt.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            // reset the timeout time and start motion.
+            runtime.reset();
+            conveyorBelt.setPower(Math.abs(speed));
+
+
+            while (opModeIsActive() &&
+                    (runtime.seconds() < timeoutS) &&
+                    (conveyorBelt.isBusy())) {
+
+            }
+
+            // Stop all motion;
+            conveyorBelt.setPower(0);
+
+
+            // Turn off RUN_TO_POSITION
+            conveyorBelt.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        }
     }
 }
