@@ -49,6 +49,11 @@ public class peretz extends LinearOpMode {
         encoderDrive(1,36, 10);
         sleep(1000);
 
+        while(opModeIsActive()){//i added this as a manual
+            conveyorBelt.setPower(gamepad1.right_stick_y);
+            separator.setPosition(gamepad1.right_trigger);
+        }
+
     }
 
     public void encoderDrive(double speed,

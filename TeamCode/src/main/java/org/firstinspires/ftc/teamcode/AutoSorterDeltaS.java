@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
  * Created by Zack on 4/29/19.
- * Adapted from Aryeh's 2017-2018 FTC code
+ * Adapted from Aryeh's 2017-2018 FTC
  */
 @Autonomous(name = "DeltaS", group = "Autonomous")
 
@@ -37,7 +37,7 @@ public class AutoSorterDeltaS extends LinearOpMode {
         waitForStart();
         while(opModeIsActive()) {
             colorFeedback();
-            //move conveyor @ speed 1
+            conveyorBelt.setPower(1);
             while (!(jimmyTheSensor.red() >= 20) && !(jimmyTheSensor.green() >= 20) && !(jimmyTheSensor.blue() >= 20)) {
                 getLegnth();
             }
@@ -78,18 +78,23 @@ public class AutoSorterDeltaS extends LinearOpMode {
 
     }
     private void deposit() { //thank you for distance; now it will go into box
-        if ((distanceCount <= block1 + 5) && (distanceCount >= block1 - 5)) {//block 1
+        if ((distanceCount <= block1 + 15) && (distanceCount >= block1 - 15)) {//block 1
             distanceCount = 0;
             telemetry.addData("Block chosen: ",1);
-            //peretz move this area uno
-        } else if ((distanceCount <= block2 + 5) && (distanceCount >= block2 - 5)) {//block 2
+            separator.setPosition(.33);
+            encoderDrive(1,18,5);
+
+        } else if ((distanceCount <= block2 + 15) && (distanceCount >= block2 - 15)) {//block 2
             distanceCount = 0;
             telemetry.addData("Block chosen: ",2);
-            //peretz move this area DOS
-        } else if ((distanceCount <= block3 + 5) && (distanceCount >= block3 - 5)) {//block 3
+            separator.setPosition(.5);
+            encoderDrive(1,18,5);
+
+        } else if ((distanceCount <= block3 + 15) && (distanceCount >= block3 - 15)) {//block 3
             distanceCount = 0;
             telemetry.addData("Block chosen: ",3);
-            //peretz move this area tres
+            separator.setPosition(.7);
+            encoderDrive(1,18,5);
         } else{
             telemetry.addData("ERROR",0);
         }
@@ -105,7 +110,6 @@ public class AutoSorterDeltaS extends LinearOpMode {
             // Determine new target position, and pass to motor controller
             newLeftTarget = conveyorBelt.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
 
-
             conveyorBelt.setTargetPosition(newLeftTarget);
 
             // Turn On RUN_TO_POSITION
@@ -115,20 +119,13 @@ public class AutoSorterDeltaS extends LinearOpMode {
             runtime.reset();
             conveyorBelt.setPower(Math.abs(speed));
 
-
-            while (opModeIsActive() &&
-                    (runtime.seconds() < timeoutS) &&
-                    (conveyorBelt.isBusy())) {
-
-            }
+            while (opModeIsActive() && (runtime.seconds() < timeoutS) && (conveyorBelt.isBusy()));
 
             // Stop all motion;
             conveyorBelt.setPower(0);
 
-
             // Turn off RUN_TO_POSITION
             conveyorBelt.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
         }
     }
 }

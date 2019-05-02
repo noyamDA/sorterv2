@@ -82,32 +82,33 @@ public class AutoSorterRGB extends LinearOpMode {
                         &&(jimmyTheSensor.blue() >= block1B +25)&&(jimmyTheSensor.blue() <= block1B-25))
             {
                 telemetry.addData("Block Chosen: ",1);
-                encoderDrive(1,18,5);
                 separator.setPosition(.33);
+                encoderDrive(1,18,5);
+
             }
 
         else if(/*color matches up with brick2*/
-                        (jimmyTheSensor.red() >= block2R +10)&&(jimmyTheSensor.red() <= block2R-10)
-                        &&(jimmyTheSensor.green() >= block2G +10)&&(jimmyTheSensor.green() <= block2G-10)
-                        &&(jimmyTheSensor.blue() >= block2B +10)&&(jimmyTheSensor.blue() <= block2B-10))
+                        (jimmyTheSensor.red() >= block2R +25)&&(jimmyTheSensor.red() <= block2R-25)
+                        &&(jimmyTheSensor.green() >= block2G +25)&&(jimmyTheSensor.green() <= block2G-25)
+                        &&(jimmyTheSensor.blue() >= block2B +25)&&(jimmyTheSensor.blue() <= block2B-25))
             {
                 telemetry.addData("Block Chosen: ",2);
-                encoderDrive(1,18,5);
                 separator.setPosition(.5);
+                encoderDrive(1,18,5);
             }
 
         else if(/*color matches up with brick3*/
-                        (jimmyTheSensor.red() >= block3R +10)&&(jimmyTheSensor.red() <= block3R-10)
-                        &&(jimmyTheSensor.green() >= block3G +10)&&(jimmyTheSensor.green() <= block3G-10)
-                        &&(jimmyTheSensor.blue() >= block3B +10)&&(jimmyTheSensor.blue() <= block3B-10))
+                        (jimmyTheSensor.red() >= block3R +25)&&(jimmyTheSensor.red() <= block3R-25)
+                        &&(jimmyTheSensor.green() >= block3G +25)&&(jimmyTheSensor.green() <= block3G-25)
+                        &&(jimmyTheSensor.blue() >= block3B +25)&&(jimmyTheSensor.blue() <= block3B-25))
             {
                 telemetry.addData("Block Chosen: ",3);
-                encoderDrive(1,18,5);
                 separator.setPosition(.7);
+                encoderDrive(1,18,5);
             }
 
         else{
-            telemetry.addData("ERROR: ",1);
+            //telemetry.addData("ERROR: ",1);
             telemetry.addData("UNKNOWN OBJECT",0);
         }
 
