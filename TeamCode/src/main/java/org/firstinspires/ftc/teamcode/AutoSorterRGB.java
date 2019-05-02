@@ -14,9 +14,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous(name = "rgb", group = "Autonomous")
 public class AutoSorterRGB extends LinearOpMode {
 
-    static final int block1R = 50;
-    static final int block1G = 50;
-    static final int block1B = 50;
+    static final int block1R = 130;
+    static final int block1G = 250;
+    static final int block1B = 270;
 
     static final int block2R = 1;
     static final int block2G = 1;
@@ -77,9 +77,9 @@ public class AutoSorterRGB extends LinearOpMode {
     }
     private void deposit(){
         if(/*color matches up with brick1*/
-                        (jimmyTheSensor.red() >= block1R +10)&&(jimmyTheSensor.red() <= block1R-10)
-                        &&(jimmyTheSensor.green() >= block1G +10)&&(jimmyTheSensor.green() <= block1G-10)
-                        &&(jimmyTheSensor.blue() >= block1B +10)&&(jimmyTheSensor.blue() <= block1B-10))
+                        (jimmyTheSensor.red() >= block1R +25)&&(jimmyTheSensor.red() <= block1R-25)
+                        &&(jimmyTheSensor.green() >= block1G +25)&&(jimmyTheSensor.green() <= block1G-25)
+                        &&(jimmyTheSensor.blue() >= block1B +25)&&(jimmyTheSensor.blue() <= block1B-25))
             {
                 telemetry.addData("Block Chosen: ",1);
                 encoderDrive(1,18,5);
