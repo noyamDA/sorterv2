@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -14,17 +15,17 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous(name = "rgb", group = "Autonomous")
 public class AutoSorterRGB extends LinearOpMode {
 
-    static final int block1R = 130;
-    static final int block1G = 250;
-    static final int block1B = 270;
+    static final int block1R = 98; //red blocko 31,12,13
+    static final int block1G = 26;
+    static final int block1B = 30;
 
-    static final int block2R = 1;
-    static final int block2G = 1;
-    static final int block2B = 1;
+    static final int block2R = 120;//tan
+    static final int block2G = 90;
+    static final int block2B = 66;
 
-    static final int block3R = 1;
-    static final int block3G = 1;
-    static final int block3B = 1;
+    static final int block3R = 42;//pink
+    static final int block3G = 27;
+    static final int block3B = 28;
 
 
     private static final double COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
@@ -58,7 +59,7 @@ public class AutoSorterRGB extends LinearOpMode {
     private void hardwareSetup(){
         jimmyTheSensor = hardwareMap.get(ColorSensor.class, "Jimmy");
         conveyorBelt = hardwareMap.get(DcMotor.class, "Conveyor Belt");
-        conveyorBelt.setDirection(DcMotor.Direction.FORWARD);
+        conveyorBelt.setDirection(DcMotor.Direction.REVERSE);
         conveyorBelt.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         separator = hardwareMap.get(Servo.class, "Separator");
         telemetry.addData("Status: ", "Initialized");

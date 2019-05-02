@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -32,7 +33,7 @@ public class peretz extends LinearOpMode {
     public void runOpMode() {
         //wheelInit("motorZoom");
         conveyorBelt = hardwareMap.get(DcMotor.class, "Conveyor Belt");
-        conveyorBelt.setDirection(DcMotor.Direction.FORWARD);
+        conveyorBelt.setDirection(DcMotor.Direction.REVERSE);
         conveyorBelt.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         separator = hardwareMap.get(Servo.class, "Separator");
         telemetry.addData("Status: ", "Initialized");
