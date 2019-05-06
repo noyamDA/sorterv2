@@ -15,17 +15,17 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous(name = "rgb", group = "Autonomous")
 public class AutoSorterRGB extends LinearOpMode {
 
-    static final int block1R = 98; //red blocko 31,12,13
-    static final int block1G = 26;
-    static final int block1B = 30;
+    static final int block1R = 200; //red blocko
+    static final int block1G = 45;
+    static final int block1B = 53;
 
-    static final int block2R = 120;//tan
-    static final int block2G = 90;
-    static final int block2B = 66;
+    static final int block2R = 300;//tan
+    static final int block2G = 230;
+    static final int block2B = 160;
 
-    static final int block3R = 42;//pink
-    static final int block3G = 27;
-    static final int block3B = 28;
+    static final int block3R = 140;//pink
+    static final int block3G = 80;
+    static final int block3B = 80;
 
 
     private static final double COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
@@ -45,14 +45,18 @@ public class AutoSorterRGB extends LinearOpMode {
         //Setup Hardware
         hardwareSetup();
         waitForStart();
+
         while (opModeIsActive()) {
             colorFeedback();
-            conveyorBelt.setPower(1);
+            //conveyorBelt.setPower(1);
+            deposit();
+            telemetry.update();
+            /*
             while (!(jimmyTheSensor.red() >= 20) && !(jimmyTheSensor.green() >= 20) && !(jimmyTheSensor.blue() >= 20)) {//there is a block
                 conveyorBelt.setPower(0);
                 deposit();
                 telemetry.update();
-            }
+            }*/
         }
     }
 
@@ -71,41 +75,38 @@ public class AutoSorterRGB extends LinearOpMode {
         telemetry.addData("red: ", jimmyTheSensor.red());
         telemetry.addData("green: ", jimmyTheSensor.green());
         telemetry.addData("blue: ", jimmyTheSensor.blue());
-        if((jimmyTheSensor.red() >= 20) && (jimmyTheSensor.green() >= 20) && (jimmyTheSensor.blue() >= 20)){
-            telemetry.addData("No object",0);//hi
-        }
         telemetry.update();
     }
     private void deposit(){
         if(/*color matches up with brick1*/
-                        (jimmyTheSensor.red() >= block1R +25)&&(jimmyTheSensor.red() <= block1R-25)
-                        &&(jimmyTheSensor.green() >= block1G +25)&&(jimmyTheSensor.green() <= block1G-25)
-                        &&(jimmyTheSensor.blue() >= block1B +25)&&(jimmyTheSensor.blue() <= block1B-25))
+                        (jimmyTheSensor.red() <= block1R +50)&&(jimmyTheSensor.red() >= block1R-50)
+                        &&(jimmyTheSensor.green() <= block1G +50)&&(jimmyTheSensor.green() >= block1G-50)
+                        &&(jimmyTheSensor.blue() <= block1B +50)&&(jimmyTheSensor.blue() >= block1B-50))
             {
                 telemetry.addData("Block Chosen: ",1);
-                separator.setPosition(.33);
-                encoderDrive(1,18,5);
+                //separator.setPosition(.33);
+                //encoderDrive(1,18,5);
 
             }
 
         else if(/*color matches up with brick2*/
-                        (jimmyTheSensor.red() >= block2R +25)&&(jimmyTheSensor.red() <= block2R-25)
-                        &&(jimmyTheSensor.green() >= block2G +25)&&(jimmyTheSensor.green() <= block2G-25)
-                        &&(jimmyTheSensor.blue() >= block2B +25)&&(jimmyTheSensor.blue() <= block2B-25))
+                        (jimmyTheSensor.red() <= block2R +50)&&(jimmyTheSensor.red() >= block2R-50)
+                        &&(jimmyTheSensor.green() <= block2G +50)&&(jimmyTheSensor.green() >= block2G-50)
+                        &&(jimmyTheSensor.blue() <= block2B +50)&&(jimmyTheSensor.blue() >= block2B-50))
             {
                 telemetry.addData("Block Chosen: ",2);
-                separator.setPosition(.5);
-                encoderDrive(1,18,5);
+                //separator.setPosition(.5);
+                //encoderDrive(1,18,5);
             }
 
         else if(/*color matches up with brick3*/
-                        (jimmyTheSensor.red() >= block3R +25)&&(jimmyTheSensor.red() <= block3R-25)
-                        &&(jimmyTheSensor.green() >= block3G +25)&&(jimmyTheSensor.green() <= block3G-25)
-                        &&(jimmyTheSensor.blue() >= block3B +25)&&(jimmyTheSensor.blue() <= block3B-25))
+                        (jimmyTheSensor.red() <= block3R +50)&&(jimmyTheSensor.red() >= block3R-50)
+                        &&(jimmyTheSensor.green() <= block3G +50)&&(jimmyTheSensor.green() >= block3G-50)
+                        &&(jimmyTheSensor.blue() <= block3B +50)&&(jimmyTheSensor.blue() >= block3B-50))
             {
                 telemetry.addData("Block Chosen: ",3);
-                separator.setPosition(.7);
-                encoderDrive(1,18,5);
+                //separator.setPosition(.7);
+                //encoderDrive(1,18,5);
             }
 
         else{
