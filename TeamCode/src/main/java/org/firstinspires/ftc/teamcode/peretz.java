@@ -2,9 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -42,13 +40,18 @@ public class peretz extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
-//-------------------- // (((IP)))
+//--------------------
 
         conveyorBelt.setPower(1);
         telemetry.addData("Status", "Moving");
         telemetry.update();
         encoderDrive(1,36, 10);
-        sleep(1000);
+        sleep(500);
+        //telemetry.addData("Help", " Me");
+        //separator.setPosition(1.0);
+
+
+
 
         while(opModeIsActive()){//i added this as a manual
             conveyorBelt.setPower(gamepad1.right_stick_y);
@@ -56,6 +59,7 @@ public class peretz extends LinearOpMode {
         }
 
     }
+
 
     public void encoderDrive(double speed,
                              double leftInches,

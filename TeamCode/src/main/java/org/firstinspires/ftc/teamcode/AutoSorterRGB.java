@@ -4,14 +4,15 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
  * Created by Zack on 4/29/19.
  * Adapted from Aryeh's 2017-2018 FTC code
+ * For CIJE Innovation day 2019
  */
+
 @Autonomous(name = "rgb", group = "Autonomous")
 public class AutoSorterRGB extends LinearOpMode {
 
@@ -41,6 +42,9 @@ public class AutoSorterRGB extends LinearOpMode {
 
     @Override
     public void runOpMode() {
+        telemetry.addData("Please ensure the sensor is properly installed and there are no fingers near the machine.", "");
+        telemetry.addData("Machine will start in 5 seconds", "");
+        sleep(5000);
 
         //Setup Hardware
         hardwareSetup();
@@ -53,7 +57,6 @@ public class AutoSorterRGB extends LinearOpMode {
             telemetry.update();
             /*
             while (!(jimmyTheSensor.red() >= 20) && !(jimmyTheSensor.green() >= 20) && !(jimmyTheSensor.blue() >= 20)) {//there is a block
-                conveyorBelt.setPower(0);
                 deposit();
                 telemetry.update();
             }*/

@@ -39,7 +39,7 @@ public class AutoSorterDeltaS extends LinearOpMode {
         while(opModeIsActive()) {
             colorFeedback();
             conveyorBelt.setPower(1);
-            while (!(jimmyTheSensor.red() >= 20) && !(jimmyTheSensor.green() >= 20) && !(jimmyTheSensor.blue() >= 20)) {
+            while (!(jimmyTheSensor.red() >= 20) && !(jimmyTheSensor.green() >= 20) && !(jimmyTheSensor.blue() >= 20)) {//ie there is a block
                 getLegnth();
             }
             deposit();
