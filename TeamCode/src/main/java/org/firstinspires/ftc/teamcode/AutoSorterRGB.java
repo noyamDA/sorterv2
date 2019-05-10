@@ -143,7 +143,6 @@ public class AutoSorterRGB extends LinearOpMode {
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
                     (conveyorBelt.isBusy())) {
-
             }
 
             // Stop all motion;
