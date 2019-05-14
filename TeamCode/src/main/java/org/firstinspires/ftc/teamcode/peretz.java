@@ -43,13 +43,12 @@ public class peretz extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        telemetry.addData("Please ensure the sensor is properly installed and there are no fingers near the machine.", "");
-        telemetry.addData("Machine will start in 5 seconds", "");
-        sleep(5000);
-
         //Setup Hardware
         hardwareSetup();
         waitForStart();
+        telemetry.addData("Please ensure the sensor is properly installed and there are no fingers near the machine.", "");
+        telemetry.addData("Machine will start in 5 seconds", "");
+        sleep(5000);
 
         while (opModeIsActive()) {
             colorFeedback();
