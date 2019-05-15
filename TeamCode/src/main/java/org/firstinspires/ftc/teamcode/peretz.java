@@ -46,20 +46,18 @@ public class peretz extends LinearOpMode {
         //Setup Hardware
         hardwareSetup();
         waitForStart();
-        telemetry.addData("Please ensure the sensor is properly installed and there are no fingers near the machine.", "");
-        telemetry.addData("Machine will start in 5 seconds", "");
-        sleep(5000);
 
         while (opModeIsActive()) {
             colorFeedback();
-            //conveyorBelt.setPower(1);
-            deposit();
+            conveyorBelt.setPower(1);
+            //deposit();
             telemetry.update();
-            /*
-            while (!(jimmyTheSensor.red() >= 20) && !(jimmyTheSensor.green() >= 20) && !(jimmyTheSensor.blue() >= 20)) {//there is a block
+
+            while ((jimmyTheSensor.red() >= 4) && (jimmyTheSensor.green() >= 4) && (jimmyTheSensor.blue() >= 4)) {//there is a block
                 deposit();
+                telemetry.addData("im in loop",0);
                 telemetry.update();
-            }*/
+            }
         }
     }
 
@@ -69,7 +67,8 @@ public class peretz extends LinearOpMode {
         conveyorBelt.setDirection(DcMotor.Direction.FORWARD);
         conveyorBelt.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         separator = hardwareMap.get(Servo.class, "Separator");
-        telemetry.addData("Status: ", "Initialized");
+        telemetry.addData("Please ensure the sensor is properly installed and there are no fingers near the machine.", "");
+        telemetry.addData("Press button when your are ready", "");
         telemetry.update();
     }
 
@@ -105,19 +104,24 @@ public class peretz extends LinearOpMode {
         }
 
         else if(/*color matches up with brick3
-                (jimmyTheSensor.red() <= block3R +50)&&(jimmyTheSensor.red() >= block3R-50)
-                        &&(jimmyTheSensor.green() <= block3G +50)&&(jimmyTheSensor.green() >= block3G-50)
-                        &&(jimmyTheSensor.blue() <= block3B +50)&&(jimmyTheSensor.blue() >= block3B-50)*/
+                (jimmyTheSensor.red() <= block3R +3)&&(jimmyTheSensor.red() >= block3R-3)
+                        &&(jimmyTheSensor.green() <= block3G +3)&&(jimmyTheSensor.green() >= block3G-3)
+                        &&(jimmyTheSensor.blue() <= block3B +3)&&(jimmyTheSensor.blue() >= block3B-3)*/
         gamepad1.x)
         {
             telemetry.addData("Block Chosen: ",3);
             separator.setPosition(.7);
             encoderDrive(1,20,5);
         }
+        else if(true)
+        {
+            conveyorBelt.setPower(0);
+            sleep(5000);
+        }
 
         else{
             //telemetry.addData("ERROR: ",1);
-            telemetry.addData("UNKNOWN OBJECT",0);
+            //telemetry.addData("UNKNOWN OBJECT",0);
         }
 
     }
