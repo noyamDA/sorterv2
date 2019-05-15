@@ -39,23 +39,24 @@ public class AutoSorterDeltaS extends LinearOpMode {
         while(opModeIsActive()) {
             colorFeedback();
             conveyorBelt.setPower(1);
-            while (!(jimmyTheSensor.red() >= 20) && !(jimmyTheSensor.green() >= 20) && !(jimmyTheSensor.blue() >= 20)) {//ie there is a block
+            telemetry.update();
+
+            while ((jimmyTheSensor.red() >= 4) && (jimmyTheSensor.green() >= 4) && (jimmyTheSensor.blue() >= 4)) {//there is a block
                 getLegnth();
             }
             deposit();
-            telemetry.update();
         }
     }
 
     private void hardwareSetup(){
         jimmyTheSensor = hardwareMap.get(ColorSensor.class, "Jimmy");
         conveyorBelt = hardwareMap.get(DcMotor.class, "Conveyor Belt");
-        conveyorBelt.setDirection(DcMotor.Direction.REVERSE);
+        conveyorBelt.setDirection(DcMotor.Direction.FORWARD);
         conveyorBelt.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         separator = hardwareMap.get(Servo.class, "Separator");
-        telemetry.addData("Status: ", "Initialized");
+        telemetry.addData("Please ensure the sensor is properly installed and there are no fingers near the machine.", "");
+        telemetry.addData("Press button when your are ready", "");
         telemetry.update();
-
     }
     int distanceCount;
 
@@ -64,7 +65,7 @@ public class AutoSorterDeltaS extends LinearOpMode {
         telemetry.addData("red: ", jimmyTheSensor.red());
         telemetry.addData("green: ", jimmyTheSensor.green());
         telemetry.addData("blue: ", jimmyTheSensor.blue());
-        if((jimmyTheSensor.red() >= 20) && (jimmyTheSensor.green() >= 20) && (jimmyTheSensor.blue() >= 20)){
+        if((jimmyTheSensor.red() >= 4) && (jimmyTheSensor.green() >= 4) && (jimmyTheSensor.blue() >= 4)){
             telemetry.addData("No object",0);
         }
         telemetry.update();
@@ -79,25 +80,23 @@ public class AutoSorterDeltaS extends LinearOpMode {
 
     }
     private void deposit() { //thank you for distance; now it will go into box
-        if ((distanceCount <= block1 + 15) && (distanceCount >= block1 - 15)) {//block 1
-            distanceCount = 0;
+        distanceCount = 0;
+        if ((distanceCount <= block1 + 4) && (distanceCount >= block1 - 4)) {//block 1
             telemetry.addData("Block chosen: ",1);
             separator.setPosition(.33);
             encoderDrive(1,18,5);
 
-        } else if ((distanceCount <= block2 + 15) && (distanceCount >= block2 - 15)) {//block 2
-            distanceCount = 0;
+        } else if ((distanceCount <= block2 + 4) && (distanceCount >= block2 - 4)) {//block 2
             telemetry.addData("Block chosen: ",2);
             separator.setPosition(.5);
             encoderDrive(1,18,5);
 
-        } else if ((distanceCount <= block3 + 15) && (distanceCount >= block3 - 15)) {//block 3
-            distanceCount = 0;
+        } else if ((distanceCount <= block3 + 4) && (distanceCount >= block3 - 4)) {//block 3
             telemetry.addData("Block chosen: ",3);
             separator.setPosition(.7);
             encoderDrive(1,18,5);
         } else{
-            telemetry.addData("ERROR",0);
+            telemetry.addData("Uknown Object",0);
         }
     }
     public void encoderDrive(double speed,

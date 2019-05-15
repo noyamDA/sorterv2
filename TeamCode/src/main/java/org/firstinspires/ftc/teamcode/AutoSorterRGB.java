@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -42,34 +43,29 @@ public class AutoSorterRGB extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        telemetry.addData("Please ensure the sensor is properly installed and there are no fingers near the machine.", "");
-        telemetry.addData("Machine will start in 5 seconds", "");
-        sleep(5000);
-
         //Setup Hardware
         hardwareSetup();
         waitForStart();
 
         while (opModeIsActive()) {
             colorFeedback();
-            //conveyorBelt.setPower(1);
-            deposit();
+            conveyorBelt.setPower(1);
             telemetry.update();
-            /*
-            while (!(jimmyTheSensor.red() >= 20) && !(jimmyTheSensor.green() >= 20) && !(jimmyTheSensor.blue() >= 20)) {//there is a block
+
+            while ((jimmyTheSensor.red() >= 4) && (jimmyTheSensor.green() >= 4) && (jimmyTheSensor.blue() >= 4)) {//there is a block
                 deposit();
-                telemetry.update();
-            }*/
+            }
         }
     }
 
     private void hardwareSetup(){
         jimmyTheSensor = hardwareMap.get(ColorSensor.class, "Jimmy");
         conveyorBelt = hardwareMap.get(DcMotor.class, "Conveyor Belt");
-        conveyorBelt.setDirection(DcMotor.Direction.REVERSE);
+        conveyorBelt.setDirection(DcMotor.Direction.FORWARD);
         conveyorBelt.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         separator = hardwareMap.get(Servo.class, "Separator");
-        telemetry.addData("Status: ", "Initialized");
+        telemetry.addData("Please ensure the sensor is properly installed and there are no fingers near the machine.", "");
+        telemetry.addData("Press button when your are ready", "");
         telemetry.update();
     }
 
@@ -81,42 +77,42 @@ public class AutoSorterRGB extends LinearOpMode {
         telemetry.update();
     }
     private void deposit(){
+        encoderDrive(.5,-1,5);
         if(/*color matches up with brick1*/
-                        (jimmyTheSensor.red() <= block1R +50)&&(jimmyTheSensor.red() >= block1R-50)
-                        &&(jimmyTheSensor.green() <= block1G +50)&&(jimmyTheSensor.green() >= block1G-50)
-                        &&(jimmyTheSensor.blue() <= block1B +50)&&(jimmyTheSensor.blue() >= block1B-50))
+                        (jimmyTheSensor.red() <= block1R +3)&&(jimmyTheSensor.red() >= block1R-3)
+                        &&(jimmyTheSensor.green() <= block1G +3)&&(jimmyTheSensor.green() >= block1G-3)
+                        &&(jimmyTheSensor.blue() <= block1B +3)&&(jimmyTheSensor.blue() >= block1B-3))
             {
                 telemetry.addData("Block Chosen: ",1);
-                //separator.setPosition(.33);
-                //encoderDrive(1,18,5);
+                separator.setPosition(.33);
+                encoderDrive(1,18,5);
 
             }
 
         else if(/*color matches up with brick2*/
-                        (jimmyTheSensor.red() <= block2R +50)&&(jimmyTheSensor.red() >= block2R-50)
-                        &&(jimmyTheSensor.green() <= block2G +50)&&(jimmyTheSensor.green() >= block2G-50)
-                        &&(jimmyTheSensor.blue() <= block2B +50)&&(jimmyTheSensor.blue() >= block2B-50))
+                        (jimmyTheSensor.red() <= block2R +3)&&(jimmyTheSensor.red() >= block2R-3)
+                        &&(jimmyTheSensor.green() <= block2G +3)&&(jimmyTheSensor.green() >= block2G-3)
+                        &&(jimmyTheSensor.blue() <= block2B +3)&&(jimmyTheSensor.blue() >= block2B-3))
             {
                 telemetry.addData("Block Chosen: ",2);
-                //separator.setPosition(.5);
-                //encoderDrive(1,18,5);
+                separator.setPosition(.5);
+                encoderDrive(1,18,5);
             }
 
         else if(/*color matches up with brick3*/
-                        (jimmyTheSensor.red() <= block3R +50)&&(jimmyTheSensor.red() >= block3R-50)
-                        &&(jimmyTheSensor.green() <= block3G +50)&&(jimmyTheSensor.green() >= block3G-50)
-                        &&(jimmyTheSensor.blue() <= block3B +50)&&(jimmyTheSensor.blue() >= block3B-50))
+                        (jimmyTheSensor.red() <= block3R +3)&&(jimmyTheSensor.red() >= block3R-3)
+                        &&(jimmyTheSensor.green() <= block3G +3)&&(jimmyTheSensor.green() >= block3G-3)
+                        &&(jimmyTheSensor.blue() <= block3B +3)&&(jimmyTheSensor.blue() >= block3B-3))
             {
                 telemetry.addData("Block Chosen: ",3);
-                //separator.setPosition(.7);
-                //encoderDrive(1,18,5);
+                separator.setPosition(.7);
+                encoderDrive(1,18,5);
             }
 
         else{
-            //telemetry.addData("ERROR: ",1);
             telemetry.addData("UNKNOWN OBJECT",0);
         }
-
+        telemetry.update();
     }
     public void encoderDrive(double speed,
                              double leftInches,
@@ -148,10 +144,8 @@ public class AutoSorterRGB extends LinearOpMode {
             // Stop all motion;
             conveyorBelt.setPower(0);
 
-
             // Turn off RUN_TO_POSITION
             conveyorBelt.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
         }
     }
 }
