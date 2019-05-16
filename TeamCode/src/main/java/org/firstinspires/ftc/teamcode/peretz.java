@@ -17,15 +17,15 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous(name = "peretz", group = "Autonomous")
 public class peretz extends LinearOpMode {
 
-    static final int block1R = 200; //red blocko
-    static final int block1G = 45;
-    static final int block1B = 53;
+    static final int block1R = 5; //blue
+    static final int block1G = 6;
+    static final int block1B = 6;
 
-    static final int block2R = 300;//tan
-    static final int block2G = 230;
-    static final int block2B = 160;
+    static final int block2R = 10;//tan
+    static final int block2G = 8;
+    static final int block2B = 6;
 
-    static final int block3R = 140;//pink
+    static final int block3R = 140;//green
     static final int block3G = 80;
     static final int block3B = 80;
 
@@ -80,6 +80,11 @@ public class peretz extends LinearOpMode {
         telemetry.update();
     }
     private void deposit(){
+        encoderDrive(.5,-.5,5);
+        encoderDrive(.5,10,5);
+        telemetry.addData("in loop",0);
+        telemetry.update();
+
         if(/*color matches up with brick1
                 (jimmyTheSensor.red() <= block1R +50)&&(jimmyTheSensor.red() >= block1R-50)
                         &&(jimmyTheSensor.green() <= block1G +50)&&(jimmyTheSensor.green() >= block1G-50)
@@ -113,14 +118,8 @@ public class peretz extends LinearOpMode {
             separator.setPosition(.7);
             encoderDrive(1,20,5);
         }
-        else if(true)
-        {
-            conveyorBelt.setPower(0);
-            sleep(5000);
-        }
-
         else{
-            //telemetry.addData("ERROR: ",1);
+            telemetry.addData("ERROR: ",1);
             //telemetry.addData("UNKNOWN OBJECT",0);
         }
 
@@ -154,7 +153,6 @@ public class peretz extends LinearOpMode {
 
             // Stop all motion;
             conveyorBelt.setPower(0);
-
 
             // Turn off RUN_TO_POSITION
             conveyorBelt.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

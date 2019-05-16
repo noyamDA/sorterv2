@@ -17,13 +17,13 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous(name = "rgb", group = "Autonomous")
 public class AutoSorterRGB extends LinearOpMode {
 
-    static final int block1R = 200; //red blocko
-    static final int block1G = 45;
-    static final int block1B = 53;
+    static final int block1R = 7; //green blocko
+    static final int block1G = 9;
+    static final int block1B = 7;
 
-    static final int block2R = 300;//tan
-    static final int block2G = 230;
-    static final int block2B = 160;
+    static final int block2R = 11;//tan
+    static final int block2G = 9;
+    static final int block2B = 7;
 
     static final int block3R = 140;//pink
     static final int block3G = 80;
@@ -77,11 +77,11 @@ public class AutoSorterRGB extends LinearOpMode {
         telemetry.update();
     }
     private void deposit(){
-        encoderDrive(.5,-1,5);
+        encoderDrive(.5,-.75,5);
         if(/*color matches up with brick1*/
-                        (jimmyTheSensor.red() <= block1R +3)&&(jimmyTheSensor.red() >= block1R-3)
-                        &&(jimmyTheSensor.green() <= block1G +3)&&(jimmyTheSensor.green() >= block1G-3)
-                        &&(jimmyTheSensor.blue() <= block1B +3)&&(jimmyTheSensor.blue() >= block1B-3))
+                        (jimmyTheSensor.red() <= block1R +2)&&(jimmyTheSensor.red() >= block1R-2)
+                        &&(jimmyTheSensor.green() <= block1G +2)&&(jimmyTheSensor.green() >= block1G-2)
+                        &&(jimmyTheSensor.blue() <= block1B +2)&&(jimmyTheSensor.blue() >= block1B-2))
             {
                 telemetry.addData("Block Chosen: ",1);
                 separator.setPosition(.33);
@@ -90,9 +90,9 @@ public class AutoSorterRGB extends LinearOpMode {
             }
 
         else if(/*color matches up with brick2*/
-                        (jimmyTheSensor.red() <= block2R +3)&&(jimmyTheSensor.red() >= block2R-3)
-                        &&(jimmyTheSensor.green() <= block2G +3)&&(jimmyTheSensor.green() >= block2G-3)
-                        &&(jimmyTheSensor.blue() <= block2B +3)&&(jimmyTheSensor.blue() >= block2B-3))
+                        (jimmyTheSensor.red() <= block2R +2)&&(jimmyTheSensor.red() >= block2R-2)
+                        &&(jimmyTheSensor.green() <= block2G +2)&&(jimmyTheSensor.green() >= block2G-2)
+                        &&(jimmyTheSensor.blue() <= block2B +2)&&(jimmyTheSensor.blue() >= block2B-2))
             {
                 telemetry.addData("Block Chosen: ",2);
                 separator.setPosition(.5);
@@ -100,9 +100,9 @@ public class AutoSorterRGB extends LinearOpMode {
             }
 
         else if(/*color matches up with brick3*/
-                        (jimmyTheSensor.red() <= block3R +3)&&(jimmyTheSensor.red() >= block3R-3)
-                        &&(jimmyTheSensor.green() <= block3G +3)&&(jimmyTheSensor.green() >= block3G-3)
-                        &&(jimmyTheSensor.blue() <= block3B +3)&&(jimmyTheSensor.blue() >= block3B-3))
+                        (jimmyTheSensor.red() <= block3R +2)&&(jimmyTheSensor.red() >= block3R-2)
+                        &&(jimmyTheSensor.green() <= block3G +2)&&(jimmyTheSensor.green() >= block3G-2)
+                        &&(jimmyTheSensor.blue() <= block3B +2)&&(jimmyTheSensor.blue() >= block3B-2))
             {
                 telemetry.addData("Block Chosen: ",3);
                 separator.setPosition(.7);
@@ -111,6 +111,7 @@ public class AutoSorterRGB extends LinearOpMode {
 
         else{
             telemetry.addData("UNKNOWN OBJECT",0);
+            encoderDrive(1,18,5);
         }
         telemetry.update();
     }
