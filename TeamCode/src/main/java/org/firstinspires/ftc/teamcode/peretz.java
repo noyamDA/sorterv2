@@ -46,12 +46,9 @@ public class peretz extends LinearOpMode {
         //Setup Hardware
         hardwareSetup();
         waitForStart();
-
         while (opModeIsActive()) {
             colorFeedback();
             conveyorBelt.setPower(1);
-            //deposit();
-            telemetry.update();
 
             while ((jimmyTheSensor.red() >= 4) && (jimmyTheSensor.green() >= 4) && (jimmyTheSensor.blue() >= 4)) {//there is a block
                 deposit();
@@ -68,7 +65,7 @@ public class peretz extends LinearOpMode {
         conveyorBelt.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         separator = hardwareMap.get(Servo.class, "Separator");
         telemetry.addData("Please ensure the sensor is properly installed and there are no fingers near the machine.", "");
-        telemetry.addData("Press button when your are ready", "");
+        telemetry.addData("Press the play button when your are ready", "");
         telemetry.update();
     }
 
@@ -80,8 +77,8 @@ public class peretz extends LinearOpMode {
         telemetry.update();
     }
     private void deposit(){
-        encoderDrive(.5,-.5,5);
-        encoderDrive(.5,10,5);
+        //encoderDrive(.5,-.5,5);
+        //encoderDrive(.5,10,5);
         telemetry.addData("in loop",0);
         telemetry.update();
 
@@ -119,8 +116,8 @@ public class peretz extends LinearOpMode {
             encoderDrive(1,20,5);
         }
         else{
-            telemetry.addData("ERROR: ",1);
-            //telemetry.addData("UNKNOWN OBJECT",0);
+            telemetry.addData("leaving loop: ",1);
+            telemetry.update();
         }
 
     }

@@ -4,7 +4,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -17,7 +16,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous(name = "rgb", group = "Autonomous")
 public class AutoSorterRGB extends LinearOpMode {
 
-    static final int block1R = 7; //green blocko
+    static final int block1R = 7; //green block
     static final int block1G = 9;
     static final int block1B = 7;
 
@@ -84,9 +83,9 @@ public class AutoSorterRGB extends LinearOpMode {
                         &&(jimmyTheSensor.blue() <= block1B +2)&&(jimmyTheSensor.blue() >= block1B-2))
             {
                 telemetry.addData("Block Chosen: ",1);
+                telemetry.update();
                 separator.setPosition(.33);
                 encoderDrive(1,18,5);
-
             }
 
         else if(/*color matches up with brick2*/
@@ -95,6 +94,7 @@ public class AutoSorterRGB extends LinearOpMode {
                         &&(jimmyTheSensor.blue() <= block2B +2)&&(jimmyTheSensor.blue() >= block2B-2))
             {
                 telemetry.addData("Block Chosen: ",2);
+                telemetry.update();
                 separator.setPosition(.5);
                 encoderDrive(1,18,5);
             }
@@ -105,15 +105,17 @@ public class AutoSorterRGB extends LinearOpMode {
                         &&(jimmyTheSensor.blue() <= block3B +2)&&(jimmyTheSensor.blue() >= block3B-2))
             {
                 telemetry.addData("Block Chosen: ",3);
+                telemetry.update();
                 separator.setPosition(.7);
                 encoderDrive(1,18,5);
             }
 
         else{
             telemetry.addData("UNKNOWN OBJECT",0);
+            telemetry.update();
             encoderDrive(1,18,5);
-        }
-        telemetry.update();
+            }
+
     }
     public void encoderDrive(double speed,
                              double leftInches,
