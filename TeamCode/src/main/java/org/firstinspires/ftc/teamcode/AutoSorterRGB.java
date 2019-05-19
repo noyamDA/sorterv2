@@ -17,7 +17,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class AutoSorterRGB extends LinearOpMode {
 
     static final int block1R = 7; //green block
-    static final int block1G = 9;
+    static final int block1G = 7;
     static final int block1B = 7;
 
     static final int block2R = 11;//tan
@@ -113,7 +113,7 @@ public class AutoSorterRGB extends LinearOpMode {
         else{
             telemetry.addData("UNKNOWN OBJECT",0);
             telemetry.update();
-            encoderDrive(1,18,5);
+            conveyorBelt.setPower(1);
             }
 
     }

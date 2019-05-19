@@ -16,9 +16,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class AutoSorterDeltaS extends LinearOpMode {
 
-    static final int block1 = 10;
-    static final int block2 = 18;
-    static final int block3 = 613;
+    static final int block1 = 25;
+    static final int block2 = 19;
+    static final int block3 = 5;
     private static final double COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
     private static final double DRIVE_GEAR_REDUCTION    = 2.0 ;     // This is < 1.0 if geared UP
     private static final double WHEEL_DIAMETER_INCHES   = 1.375 ;     // For figuring circumference
@@ -81,17 +81,17 @@ public class AutoSorterDeltaS extends LinearOpMode {
     }
     private void deposit() { //thank you for distance; now it will go into box
         distanceCount = 0;
-        if ((distanceCount <= block1 + 4) && (distanceCount >= block1 - 4)) {//block 1
+        if ((distanceCount <= block1 + 3) && (distanceCount >= block1 - 3)) {//block 1
             telemetry.addData("Block chosen: ",1);
             separator.setPosition(.33);
             encoderDrive(1,18,5);
 
-        } else if ((distanceCount <= block2 + 4) && (distanceCount >= block2 - 4)) {//block 2
+        } else if ((distanceCount <= block2 + 3) && (distanceCount >= block2 - 3)) {//block 2
             telemetry.addData("Block chosen: ",2);
             separator.setPosition(.5);
             encoderDrive(1,18,5);
 
-        } else if ((distanceCount <= block3 + 4) && (distanceCount >= block3 - 4)) {//block 3
+        } else if ((distanceCount <= block3 + 3) && (distanceCount >= block3 - 3)) {//block 3
             telemetry.addData("Block chosen: ",3);
             separator.setPosition(.7);
             encoderDrive(1,18,5);

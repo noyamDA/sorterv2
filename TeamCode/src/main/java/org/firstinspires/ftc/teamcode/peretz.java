@@ -52,8 +52,6 @@ public class peretz extends LinearOpMode {
 
             while ((jimmyTheSensor.red() >= 4) && (jimmyTheSensor.green() >= 4) && (jimmyTheSensor.blue() >= 4)) {//there is a block
                 deposit();
-                telemetry.addData("im in loop",0);
-                telemetry.update();
             }
         }
     }
@@ -78,9 +76,9 @@ public class peretz extends LinearOpMode {
     }
     private void deposit(){
         //encoderDrive(.5,-.5,5);
-        //encoderDrive(.5,10,5);
+        //conveyorBelt.setPower(.5);
         telemetry.addData("in loop",0);
-        telemetry.update();
+
 
         if(/*color matches up with brick1
                 (jimmyTheSensor.red() <= block1R +50)&&(jimmyTheSensor.red() >= block1R-50)
@@ -116,7 +114,7 @@ public class peretz extends LinearOpMode {
             encoderDrive(1,20,5);
         }
         else{
-            telemetry.addData("leaving loop: ",1);
+            telemetry.addData("leaving loop: ","unknown");
             telemetry.update();
         }
 
